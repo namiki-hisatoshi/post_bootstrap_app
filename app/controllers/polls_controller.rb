@@ -1,23 +1,22 @@
 class PollsController < ApplicationController
+  before_action :set_poll, only: %i[show edit update destroy]
   # 略
   def index
     @polls = Poll.order(id: :asc)
   end
 
   def show
-    @poll = Poll.find(params[:id])
+
   end
 
   def edit
-    @poll = Poll.find(params[:id])
+
   end
 
   def update
-    poll = Poll.find(params[:id])
-    poll.update!(poll_params)
-    redirect_to poll
+    @poll.update!(poll_params)
+    redirect_to poll, notice: "更新しました"
   end
-
 
   def new
   # ***** 以下を追加 *****
@@ -28,15 +27,17 @@ class PollsController < ApplicationController
   def create
   # ***** 以下を追加 *****
     poll = Poll.create!(poll_params)
-    redirect_to poll
+    redirect_to poll, notice: "投稿しました"
   # ***** 以上を追加 *****
   end
 
   def destroy
-    post = Post.find(params[:id])
-    post.destroy!
-    redirect_to root_path
+    @poll.destroy!
+    redirect_to root_path, alert: "削除しました"
   end
+
+  def set_poll
+    @poll = Poll.find(params[:id])
 
   # ***** 以下を追加 *****
   private

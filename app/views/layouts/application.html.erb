@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <%= link_to "投稿一覧", polls_path %> <%= link_to "新規投稿", new_poll_path %>
-    <hr>
+    <%= render "layouts/header" %>
+    <%= render "layouts/flash" %>
     <%= yield %>
   </body>
 </html>
