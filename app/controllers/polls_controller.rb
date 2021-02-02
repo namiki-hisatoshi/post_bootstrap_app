@@ -22,7 +22,11 @@ class PollsController < ApplicationController
   # ***** 以上を追加 *****
   end
 
-  # 略
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy!
+    redirect_to root_path
+  end
 
   # ***** 以下を追加 *****
   private
