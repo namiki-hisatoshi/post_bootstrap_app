@@ -1,16 +1,20 @@
-class PostsController < ApplicationController
+class PollsController < ApplicationController
   # 略
+  def show
+    @poll = Poll.find(params[:id])
+  end
+
 
   def new
   # ***** 以下を追加 *****
-    @post = Post.new
+    @poll = Poll.new
   # ***** 以上を追加 *****
   end
 
   def create
   # ***** 以下を追加 *****
-    post = Post.create!(post_params)
-    redirect_to post
+    poll = Poll.create!(poll_params)
+    redirect_to poll
   # ***** 以上を追加 *****
   end
 
@@ -19,8 +23,8 @@ class PostsController < ApplicationController
   # ***** 以下を追加 *****
   private
 
-  def post_params
-    params.require(:post).permit(:title, :content)
+  def poll_params
+    params.require(:poll).permit(:title, :content)
   end
   # ***** 以上を追加 *****
 end
