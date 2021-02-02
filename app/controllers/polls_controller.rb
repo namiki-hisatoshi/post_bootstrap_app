@@ -8,6 +8,16 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
   end
 
+  def edit
+    @poll = Poll.find(params[:id])
+  end
+
+  def update
+    poll = Poll.find(params[:id])
+    poll.update!(poll_params)
+    redirect_to poll
+  end
+
 
   def new
   # ***** 以下を追加 *****
