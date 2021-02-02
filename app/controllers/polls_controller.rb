@@ -1,5 +1,9 @@
 class PollsController < ApplicationController
   # 略
+  def index
+    @polls = Poll.order(id: :asc)
+  end
+
   def show
     @poll = Poll.find(params[:id])
   end
