@@ -1,0 +1,23 @@
+<h1>投稿一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">タイトル</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @polls.each.with_index(1) do |poll, i| %>
+      <tr>
+        <th scope="row"><%= i %></th>
+        <td><%= poll.title %></td>
+        <td>
+          <%= link_to "詳細", poll %>
+          <%= link_to "編集", edit_poll_path(poll) %>
+          <%= link_to "削除", poll, method: :delete, data: { confirm: "削除しますか?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
